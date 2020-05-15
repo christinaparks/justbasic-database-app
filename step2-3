@@ -1,0 +1,149 @@
+'CSIS 111B
+'FINAL PROJ. STEP 3
+'Programmed by Christina J. Parks
+'14 May 2020
+
+
+Last=0
+Dim Title$(50)
+Dim Author$(50)
+Dim Pages(50)
+Dim Genre$(50)
+Dim Date(50)
+
+Do
+ Gosub [Menu]
+ Gosub [Add]
+ Gosub [List]
+ Gosub [MainSearch]
+ Gosub [SearchTitle]
+ Gosub [SearchAuthor]
+ Gosub [SearchGenre]
+ Gosub [SearchPageCount]
+Loop Until Upper$(Choice$)="Q"
+
+End
+
+[Menu]
+  Print "A. Add Books"
+  Print "B. List All Books"
+  Print "C. Search"
+  Print "Q. Quit"
+  Input "Enter Choice: ";Choice$
+  Select Case Upper$(Choice$)
+  CLS
+Return
+
+[Add]
+   Case "A"
+   CLS
+   Input "Enter Title: ";Title$(Last)
+   Input "Enter Author Name: ";Author$(Last)
+   Input "Enter Page Count: ";Pages(Last)
+   Input "Enter Genre: ";Genre$(Last)
+   Last=Last+1
+   CLS
+Return
+
+[List]
+   Case "B"
+   CLS
+   For x=0 to Last-1
+   Print
+   Print Title$(x), Author$(x), Genre$(x)
+   Print "__________________"
+   Print
+   Next x
+Return
+
+
+[MainSearch]
+   Case "C"
+   Do
+     Print "A. Search Title"
+     Print "B. Search Author"
+     Print "C. Search Genre"
+     Print "D. Search Page Count"
+     Print "E. Main Menu"
+     Input "Enter Choice: ";srchChoice$
+
+       Select Case Upper$(srchChoice$)
+
+[SearchTitle]
+        Case "A"
+        CLS
+          Input "Search Title: ";titleSrch$
+            For x=0 to Last-1
+              If Title$(x)=titleSrch$ Then
+               Print
+               Print Title$(x),Author$(x)
+               Print "__________________"
+               Print
+              End If
+            Next x
+Return
+
+[SearchAuthor]
+        Case "B"
+        CLS
+          Input "Search Author: ";authSrch$
+            For x=0 to Last-1
+              If Author$(x)=authSrch$ Then
+               Print
+               Print Author$(x), Title$(x)
+               Print "__________________"
+               Print
+              End If
+          Next x
+Return
+
+[SearchGenre]
+        Case "C"
+        CLS
+          Input "Search Genre: ";genreSrch$
+            For x=0 to Last-1
+              If Genre$(x)=genreSrch$ Then
+               Print
+               Print Title$(x), Author$(x)
+               Print "__________________"
+               Print
+              End If
+            Next x
+Return
+
+[SearchPageCount]
+        Case "D"
+        CLS
+          Input "Search Page Counts Higher Than: ";High
+
+            For x=0 to Last-1
+             If Pages(x)>=High Then
+              Print
+              Print Title$(x), Author$(x), Pages(x)
+              Print "__________________"
+              Print
+             End If
+            Next x
+
+          Input "Search Page Counts Lower Than: ";Low
+            For x=0 to Last-1
+             If Pages(x)<=Low Then
+              Print
+              Print Title$(x),Author$(x), Pages(x)
+              Print "__________________"
+              Print
+             End If
+             Next x
+
+       End Select
+     Loop Until Upper$(srchChoice$)="E"
+     CLS
+Return
+
+  End Select
+Return
+
+End
+
+
+
